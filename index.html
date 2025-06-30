@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Avinash | Portfolio</title>
+  <style>
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      line-height: 1.6;
+      font-family: monospace;
+      font-size: 15px;
+      background-color: #f4f7ff;
+      color: #222;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    header {
+      background: linear-gradient(135deg, #00d2ff, #3a7bd5);
+      height: 150px;
+      border-radius: 25px;
+      margin: 5px;
+      color: white;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      font-size: larger;
+      top: 0;
+      z-index: 100;
+      padding: 15px;
+      transition: background 0.3s;
+    }
+
+    .buttons {
+      height: 40px;
+      width: 110px;
+      border: none;
+      border-radius: 15px;
+      cursor: pointer;
+      background-color: #20b2aa;
+      color: white;
+      font-weight: bold;
+      transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s;
+    }
+
+    .buttons:hover {
+      transform: scale(1.1);
+      background-color: #2ec4b6;
+      box-shadow: 0 0 15px rgba(32, 178, 170, 0.6);
+    }
+
+    h1, h2 {
+      background: linear-gradient(to right, #00c6ff, #0072ff);
+      -webkit-background-clip: text;
+      color: transparent;
+      font-size: 40px;
+      animation: fadeInDown 1s ease;
+    }
+
+    header h1 {
+      color: white;
+      margin: 10px;
+      background: none;
+      -webkit-background-clip: unset;
+      animation: slideInLeft 1s ease;
+    }
+
+    img {
+      height: 400px;
+      width: auto;
+      max-width: 100%;
+      border-radius: 10px;
+      animation: zoomIn 1s ease;
+    }
+
+    section {
+      min-height: 100vh;
+      text-align: center;
+      border: 1px solid #ccc;
+      border-radius: 20px;
+      margin: 0;
+      padding: 20px;
+      background-color: #ffffff;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    main {
+      padding: 5px;
+      text-align: center;
+    }
+
+    .input {
+      border-radius: 5px;
+      height: 30px;
+      padding: 5px;
+      border: 1px solid #ccc;
+      font-family: monospace;
+      width: 100%;
+    }
+
+    textarea.input {
+      height: 100px;
+      resize: vertical;
+    }
+
+    footer {
+      background-color: #000;
+      color: bisque;
+      text-align: center;
+      padding: 15px 0;
+      font-family: monospace;
+    }
+
+    .footer-link {
+      color: bisque;
+      text-decoration: none;
+      margin: 0 10px;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    .footer-link:hover {
+      color: lightblue;
+    }
+
+    .top {
+      height: 40px;
+      width: 70px;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      position: fixed;
+      bottom: 15px;
+      right: 20px;
+      color: white;
+      background-color: #20b2aa;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s, background-color 0.3s;
+    }
+
+    .top:hover {
+      transform: scale(1.1);
+    }
+
+    #skills ol {
+      text-align: left;
+      display: inline-block;
+      margin-top: 10px;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+      padding: 10px;
+    }
+
+    .project-card {
+      background: linear-gradient(145deg, #ffffff, #e6f0ff);
+      border: 1px solid #ccc;
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: fadeInUp 1s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    .project-card h3 {
+      color: #0072ff;
+      margin-bottom: 10px;
+      font-size: 20px;
+    }
+
+    .project-card p {
+      color: #444;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    nav a {
+      margin: 5px;
+    }
+
+    .top-right {
+      position: absolute;
+      top: 20px;
+      right: 25px;
+      z-index: 1000;
+    }
+
+    .dark-mode {
+      background-color: #121212;
+      color: #e0e0e0;
+    }
+
+    .dark-mode header {
+      background: linear-gradient(135deg, #2b5876, #4e4376);
+      color: #f0f0f0;
+    }
+
+    .dark-mode a {
+      color: #90caf9;
+    }
+
+    .dark-mode label,
+    .dark-mode input,
+    .dark-mode textarea,
+    .dark-mode form,
+    .dark-mode p,
+    .dark-mode ol,
+    .dark-mode li {
+      color: #f0f0f0;
+      background-color: #1e1e1e;
+      border-color: #444;
+    }
+
+    .dark-mode .project-card {
+      background: #1e1e1e;
+      border-color: #444;
+    }
+
+    .dark-mode .project-card h3 {
+      color: #90caf9;
+    }
+
+    .dark-mode .project-card p {
+      color: #ccc;
+    }
+
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    .animate-on-scroll.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes fadeInDown {
+      0% { opacity: 0; transform: translateY(-20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideInLeft {
+      0% { opacity: 0; transform: translateX(-100px); }
+      100% { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes zoomIn {
+      0% { opacity: 0; transform: scale(0.8); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    @media screen and (max-width: 600px) {
+      header {
+        font-size: 16px;
+        height: auto;
+        padding: 10px;
+        align-items: center;
+        text-align: center;
+      }
+
+      nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .buttons {
+        width: 100px;
+        font-size: 12px;
+        margin: 5px;
+      }
+
+      #toggle-dark {
+        position: relative;
+        margin-top: 10px;
+        right: 0;
+      }
+
+      img {
+        height: auto;
+        width: 100%;
+      }
+
+      form {
+        width: 100%;
+      }
+
+      .paragraph {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body id="top">
+  <!-- Header -->
+  <header>
+    <h1>WELCOME TO MY PORTFOLIO</h1>
+    <nav>
+      <a href="#about"><button class="buttons">About</button></a>
+      <a href="#skills"><button class="buttons">Skills</button></a>
+      <a href="#projects"><button class="buttons">Projects</button></a>
+      <a href="#contact"><button class="buttons">Contact</button></a>
+    </nav>
+    <button id="toggle-dark" class="buttons top-right">Dark Mode</button>
+  </header>
+
+  <!-- Main -->
+  <main>
+    <!-- About Section -->
+    <section id="about">
+      <h1>Avinash</h1>
+      <img src="hacker.jpg" alt="Profile image of Avinash" />
+      <div class="paragraph">
+        <p>I am a passionate web developer focused on frontend and backend development.</p>
+        <p>I’m currently pursuing my B.Tech at <em>MVRS College</em>.</p>
+        <p>I have self-learned web development <strong>by watching YouTube tutorials</strong>.</p>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+      <h1>My Skills</h1>
+      <ol>
+        <li>HTML Basics</li>
+        <li>CSS Basics</li>
+        <li>JavaScript Basics</li>
+        <li>Frontend & Backend Basics</li>
+      </ol>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+      <h2>My Projects</h2>
+      <div class="project-grid">
+        <div class="project-card">
+          <h3>Portfolio Website</h3>
+          <p>Built using HTML, CSS, and JavaScript. Includes dark mode, animations, and responsive design.</p>
+        </div>
+        <div class="project-card">
+          <h3>Python Calculator</h3>
+          <p>Developed a basic calculator using Python to perform arithmetic operations.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+      <h1>Contact</h1>
+      <p>Feel free to get in touch with me using the form below:</p>
+      <form action="https://formsubmit.co/avin8138@gmail.com" method="POST">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_next" value="https://yourportfolio.com/thank-you.html">
+
+        <label for="name">Name:</label>
+        <input type="text" name="name" class="input" required />
+
+        <label for="email">Email:</label>
+        <input type="email" name="email" class="input" required />
+
+        <p><strong>Choose your gender:</strong></p>
+        <input type="radio" id="male" name="gender" value="Male" />
+        <label for="male">Male</label>
+        <input type="radio" id="female" name="gender" value="Female" />
+        <label for="female">Female</label>
+
+        <p><strong>Select your interests:</strong></p>
+        <input type="checkbox" id="coding" name="interest" value="Coding" />
+        <label for="coding">Coding</label>
+        <input type="checkbox" id="reading" name="interest" value="Reading" />
+        <label for="reading">Reading</label>
+
+        <label for="bio">Bio (up to 200 characters):</label>
+        <textarea name="bio" id="bio" maxlength="200" class="input"></textarea>
+
+        <button type="submit" class="buttons">Submit</button>
+      </form>
+    </section>
+  </main>
+
+  <!-- Top Button -->
+  <a href="#top"><button class="top">TOP</button></a>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 My Portfolio</p>
+    <p>
+      <a href="https://www.instagram.com/K_avinash_chowdary" target="_blank" class="footer-link">Instagram</a> |
+      <a href="https://wa.me/917416583646" target="_blank" class="footer-link">WhatsApp</a>
+    </p>
+  </footer>
+
+  <script>
+    // Dark Mode Toggle
+    const darkBtn = document.getElementById("toggle-dark");
+    darkBtn.addEventListener("click", () => {
+      document.body.classList.toggle("dark-mode");
+      darkBtn.textContent = document.body.classList.contains("dark-mode") ? "Light Mode" : "Dark Mode";
+    });
+
+    // Form Submit (Formsubmit service)
+    document.querySelector("form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const form = e.target;
+      const submitButton = form.querySelector("button[type='submit']");
+      submitButton.textContent = "Sending...";
+      submitButton.disabled = true;
+
+      const formData = new FormData(form);
+      fetch(form.action, {
+        method: "POST",
+        body: formData
+      })
+        .then(response => {
+          if (response.ok) {
+            alert("✅ Thank you for contacting me!");
+            form.reset();
+          } else {
+            alert("❌ Something went wrong.");
+          }
+        })
+        .catch(() => alert("⚠ Network error. Try again later."))
+        .finally(() => {
+          submitButton.textContent = "Submit";
+          submitButton.disabled = false;
+        });
+    });
+
+    // Scroll Animation
+    const animatedSections = document.querySelectorAll("section");
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+      });
+    }, {
+      threshold: 0.2
+    });
+
+    animatedSections.forEach(section => {
+      section.classList.add("animate-on-scroll");
+      observer.observe(section);
+    });
+  </script>
+</body>
+</html>
